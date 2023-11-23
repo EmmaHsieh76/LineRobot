@@ -1,151 +1,106 @@
 export default () => {
   return {
     type: 'bubble',
-    hero: {
-      type: 'image',
-      url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png',
-      size: 'full',
-      aspectRatio: '15:10',
-      aspectMode: 'cover',
-      action: {
-        type: 'uri',
-        uri: 'http://linecorp.com/'
-      }
-    },
     body: {
       type: 'box',
       layout: 'vertical',
       contents: [
         {
-          type: 'text',
-          text: 'Brown Cafe',
-          weight: 'bold',
-          size: 'xl'
-        },
-        {
-          type: 'box',
-          layout: 'baseline',
-          margin: 'md',
-          contents: [
-            {
-              type: 'icon',
-              size: 'sm',
-              url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
-            },
-            {
-              type: 'icon',
-              size: 'sm',
-              url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
-            },
-            {
-              type: 'icon',
-              size: 'sm',
-              url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
-            },
-            {
-              type: 'icon',
-              size: 'sm',
-              url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
-            },
-            {
-              type: 'icon',
-              size: 'sm',
-              url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png'
-            },
-            {
-              type: 'text',
-              text: '4.0',
-              size: 'sm',
-              color: '#999999',
-              margin: 'md',
-              flex: 0
-            }
-          ]
+          type: 'image',
+          url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip3.jpg',
+          size: 'full',
+          aspectMode: 'cover',
+          aspectRatio: '1:1',
+          gravity: 'center'
         },
         {
           type: 'box',
           layout: 'vertical',
-          margin: 'lg',
-          spacing: 'sm',
+          contents: [],
+          position: 'absolute',
+          width: '100%',
+          height: '40%',
+          offsetBottom: '0px',
+          offsetStart: '0px',
+          offsetEnd: '0px'
+        },
+        {
+          type: 'box',
+          layout: 'horizontal',
           contents: [
             {
               type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
+              layout: 'vertical',
               contents: [
                 {
-                  type: 'text',
-                  text: 'Place',
-                  color: '#aaaaaa',
-                  size: 'sm',
-                  flex: 1
+                  type: 'box',
+                  layout: 'horizontal',
+                  contents: [
+                    {
+                      type: 'text',
+                      text: 'Brown Grand Hotel',
+                      size: 'xl',
+                      color: '#ffffff'
+                    }
+                  ]
                 },
                 {
-                  type: 'text',
-                  text: 'Miraina Tower, 4-1-6 Shinjuku, Tokyo',
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'Time',
-                  color: '#aaaaaa',
-                  size: 'sm',
-                  flex: 1
+                  type: 'box',
+                  layout: 'baseline',
+                  contents: [
+                    {
+                      type: 'icon',
+                      url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
+                    },
+                    {
+                      type: 'icon',
+                      url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
+                    },
+                    {
+                      type: 'icon',
+                      url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
+                    },
+                    {
+                      type: 'icon',
+                      url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
+                    },
+                    {
+                      type: 'icon',
+                      url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png'
+                    },
+                    {
+                      type: 'text',
+                      text: '4.0',
+                      color: '#a9a9a9'
+                    }
+                  ],
+                  spacing: 'xs'
                 },
                 {
-                  type: 'text',
-                  text: '10:00 - 23:00',
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
+                  type: 'box',
+                  layout: 'horizontal',
+                  contents: [
+                    {
+                      type: 'box',
+                      layout: 'baseline',
+                      contents: [],
+                      flex: 0,
+                      spacing: 'lg'
+                    }
+                  ]
                 }
-              ]
+              ],
+              spacing: 'xs'
             }
-          ]
+          ],
+          position: 'absolute',
+          offsetBottom: '0px',
+          offsetStart: '0px',
+          offsetEnd: '0px',
+          paddingAll: '20px'
         }
       ],
-      paddingTop: 'xxl',
-      spacing: 'none'
-    },
-    footer: {
-      type: 'box',
-      layout: 'horizontal',
-      spacing: 'none',
-      contents: [
-        {
-          type: 'button',
-          style: 'link',
-          action: {
-            type: 'uri',
-            label: '預訂電話',
-            uri: 'https://linecorp.com'
-          },
-          height: 'sm',
-          margin: 'none'
-        },
-        {
-          type: 'button',
-          style: 'link',
-          height: 'sm',
-          action: {
-            type: 'uri',
-            label: '網站',
-            uri: 'https://linecorp.com'
-          }
-        }
-      ],
-      margin: 'none'
+      paddingAll: '0px'
     }
   }
 }

@@ -9,11 +9,7 @@ const bot = linebot({
 })
 
 bot.on('message', (event) => {
-  if (event.message.type === 'text') {
-    event.reply(event.message.text)
-  }
-
-  if (event.message.type === '小吃') {
+  if (event.message.type === 'location') {
     near(event)
   }
 })
