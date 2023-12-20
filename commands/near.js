@@ -18,9 +18,12 @@ export default async (event) => {
   try {
     const match = event.message.address.match(/(?<city>\D+[縣市])(?<district>\D+?(市區|鎮區|鎮市|[鄉鎮市區]))/)
 
-    const { data } = await axios.get(`https://ifoodie.tw/explore/${match[1]}/${match[2]}/list`)
+    const { data } = await axios.get(`https://ifoodie.tw/explore/${match[1].replace('台灣', '')}/${match[2]}/list`)
     const $ = cheerio.load(data)
     const json = JSON.parse($('#__NEXT_DATA__').text())
+    console.log('json', json)
+    fs.writeFileSync('./aaa.json', JSON.stringify(json, null, 2))
+    console.log(`https://ifoodie.tw/explore/${match[1]}/${match[2]}/list`)
     const restaurants = json.props.initialState.search.explore.data
       .map((restaurant) => {
         restaurant.distance = distance(
@@ -40,20 +43,20 @@ export default async (event) => {
       })
       .slice(0, 5)
 
-    console.log(restaurants)
+    console.log('restaurants', restaurants)
 
     // 模板引入
     const template = nearTemplates()
 
     // 餐廳名稱
-    template.body.contents[0].text = restaurants.name
+    template.body.contents[0].text = restaurants[0].name
+    console.log('餐廳名稱', restaurants[0].name)
 
     // 圖片
-    template.hero.url = restaurants.primaryCheckin.photo[0]
+    template.hero.url = restaurants[0].primaryCheckin.photos[0]
+    // fs.writeFileSync('./aaa.json', JSON.stringify(json, null, 2))
+    fs.writeFileSync('./dump/near.json', JSON.stringify(template, null, 2))
 
-    if (process.env.DEBUG === 'true') {
-      fs.writeFileSync('../dump/near.json', JSON.stringify(template, null, 2))
-    }
     const result = await event.reply({
       type: 'flex',
       altText: '查詢結果',
@@ -61,6 +64,6 @@ export default async (event) => {
     })
     console.log(result)
   } catch (error) {
-    console.log('錯誤')
+    console.log(error)
   }
 }
