@@ -2,6 +2,7 @@
   "type": "bubble",
   "hero": {
     "type": "image",
+    "url": "https://lh3.googleusercontent.com/mixbMYs4hgetd0CkKypQgg-CwUJeKhBPbnWkWuMlr878tnp9O2_f0nvIoF0l0UT7pVOVQ50GhvBKa0a-lFbGk0FOQTslEIgALo8lk8uY8MXT=s600",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -16,7 +17,7 @@
     "contents": [
       {
         "type": "text",
-        "text": "義尤味勁Enjoy Pasta",
+        "text": "川豫麵館",
         "weight": "bold",
         "size": "xl"
       },
