@@ -20,6 +20,7 @@ export default async (event) => {
 
     const { data } = await axios.get(`https://ifoodie.tw/explore/${match[1].replace('台灣', '')}/${match[2]}/list`)
     const $ = cheerio.load(data)
+    const replies = []
     const json = JSON.parse($('#__NEXT_DATA__').text())
     console.log('json', json)
     fs.writeFileSync('./aaa.json', JSON.stringify(json, null, 2))
@@ -48,19 +49,25 @@ export default async (event) => {
     // 模板引入
     const template = nearTemplates()
 
-    // 餐廳名稱
-    template.body.contents[0].text = restaurants[0].name
-    console.log('餐廳名稱', restaurants[0].name)
+    for (let i = 0; i < 5; i++) {
+      // 餐廳名稱
+      template.body.contents[0].text = restaurants[i].name
 
-    // 圖片
-    template.hero.url = restaurants[0].primaryCheckin.photos[0]
-    // fs.writeFileSync('./aaa.json', JSON.stringify(json, null, 2))
-    fs.writeFileSync('./dump/near.json', JSON.stringify(template, null, 2))
+      // 圖片
+      template.hero.url = restaurants[i].primaryCheckin.photos[0]
+      replies.push(template)
+      console.log('餐廳名稱', restaurants[i].name)
+      console.log('圖片', restaurants[i].primaryCheckin.photos[0])
+    }
 
+    fs.writeFileSync('./dump/near2.json', JSON.stringify(template, null, 2))
     const result = await event.reply({
       type: 'flex',
       altText: '查詢結果',
-      contents: template
+      contents: {
+        type: 'carousel',
+        contents: replies
+      }
     })
     console.log(result)
   } catch (error) {
