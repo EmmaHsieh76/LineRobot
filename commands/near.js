@@ -50,10 +50,13 @@ export default async (event) => {
     const template = nearTemplates()
 
     for (let i = 0; i < 5; i++) {
+      
       // 餐廳名稱
       template.body.contents[0].text = restaurants[i].name
 
       // 圖片
+      let images = restaurants[i].primaryCheckin.photos[0]
+      let imageurl = new URL(images,'')
       template.hero.url = restaurants[i].primaryCheckin.photos[0]
       replies.push(template)
       console.log('餐廳名稱', restaurants[i].name)
