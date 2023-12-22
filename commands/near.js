@@ -48,19 +48,18 @@ export default async (event) => {
 
     // 模板引入
     const template = nearTemplates()
-
     for (let i = 0; i < 5; i++) {
-      
       // 餐廳名稱
       template.body.contents[0].text = restaurants[i].name
 
       // 圖片
-      let images = restaurants[i].primaryCheckin.photos[0]
-      let imageurl = new URL(images,'')
+      const image = restaurants[i].primaryCheckin.photos[0]
+      const imageurl = new URL(image, 'https://lh3.googleusercontent.com/').href
+
       template.hero.url = restaurants[i].primaryCheckin.photos[0]
       replies.push(template)
       console.log('餐廳名稱', restaurants[i].name)
-      console.log('圖片', restaurants[i].primaryCheckin.photos[0])
+      console.log('圖片', imageurl)
     }
 
     fs.writeFileSync('./dump/near2.json', JSON.stringify(template, null, 2))

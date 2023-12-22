@@ -2,6 +2,7 @@
   "type": "bubble",
   "hero": {
     "type": "image",
+    "url": "https://lh3.googleusercontent.com/j5Z_Q6lSyr2AE6I__y-ILAGZqdDx556-bniWr7-lmvwzlvkuBq-mTKHvsvaxKHXC4NdGQ0G4ExOYeAAQuAVZo6DNc_KrDFH3t-501tcGHhtL=s600",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -16,7 +17,7 @@
     "contents": [
       {
         "type": "text",
-        "text": "林家小籠包",
+        "text": "燒肉眾 新莊店",
         "weight": "bold",
         "size": "xl"
       },
