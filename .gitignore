@@ -1,2 +1,4 @@
 .env
 node_modules
+# 忽略掉dump資料夾中所有的json檔
+dump/*.json

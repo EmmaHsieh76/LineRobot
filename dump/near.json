@@ -2,6 +2,7 @@
   "type": "bubble",
   "hero": {
     "type": "image",
+    "url": "https://lh3.googleusercontent.com/E3DLXw1lSOm7TedoiHgrjJckCcPiDsF9lQAjZIUU0PXuO6Pc5it3Xz96D7Omgt1W3CDsu_l1pM8Y8k1LREZkmRHR9Wz8ZPXNaruM4Jna9y8=s600",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -16,7 +17,7 @@
     "contents": [
       {
         "type": "text",
-        "text": "林家小籠包",
+        "text": "大碗公冰．甜品-新莊富國店",
         "weight": "bold",
         "size": "xl"
       },
@@ -52,7 +53,7 @@
           },
           {
             "type": "text",
-            "text": "4.0",
+            "text": "4",
             "size": "sm",
             "color": "#999999",
             "margin": "md",
@@ -73,14 +74,14 @@
             "contents": [
               {
                 "type": "text",
-                "text": "Place",
+                "text": "地址",
                 "color": "#aaaaaa",
                 "size": "sm",
                 "flex": 1
               },
               {
                 "type": "text",
-                "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                "text": "新北市新莊區富國路160號",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -95,14 +96,14 @@
             "contents": [
               {
                 "type": "text",
-                "text": "Time",
+                "text": "時間",
                 "color": "#aaaaaa",
                 "size": "sm",
                 "flex": 1
               },
               {
                 "type": "text",
-                "text": "10:00 - 23:00",
+                "text": "現正營業: 10:00-23:30",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",

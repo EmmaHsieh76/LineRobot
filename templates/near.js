@@ -75,7 +75,7 @@ export default () => {
               contents: [
                 {
                   type: 'text',
-                  text: 'Place',
+                  text: '地址',
                   color: '#aaaaaa',
                   size: 'sm',
                   flex: 1
@@ -97,7 +97,7 @@ export default () => {
               contents: [
                 {
                   type: 'text',
-                  text: 'Time',
+                  text: '時間',
                   color: '#aaaaaa',
                   size: 'sm',
                   flex: 1

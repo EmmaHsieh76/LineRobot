@@ -44,28 +44,50 @@ export default async (event) => {
       })
       .slice(0, 5)
 
-    console.log('restaurants', restaurants)
-
-    // 模板引入
-    const template = nearTemplates()
     for (let i = 0; i < 5; i++) {
       // 餐廳名稱
-      template.body.contents[0].text = restaurants[i].name
+      const title = restaurants[i].name
 
       // 圖片
       const image = restaurants[i].primaryCheckin.photos[0]
       const imageurl = new URL(image, 'https://lh3.googleusercontent.com/').href
-
-      template.hero.url = restaurants[i].primaryCheckin.photos[0]
+      const score = restaurants[i].rating.toString()
+      const totalStar = Math.round(parseFloat(score))
+      const address = restaurants[i].address.toString()
+      const openTime = restaurants[i].openingHours.toString()
+      // 產生新模板
+      const template = nearTemplates()
+      // 修改模板標題
+      template.body.contents[0].text = title
+      // 修改模板圖片
+      template.hero.url = imageurl
+      // 分數星星
+      for (let j = 0; j < totalStar; j++) {
+        template.body.contents[1].contents[j].url =
+          'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
+      }
+      for (let j = totalStar; j < 5; j++) {
+        template.body.contents[1].contents[j].url =
+          'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png'
+      }
+      template.body.contents[1].contents[5].text = score
+      template.body.contents[2].contents[0].contents[1].text = address
+      template.body.contents[2].contents[1].contents[1].text = openTime
+      // 加入陣列中
       replies.push(template)
-      console.log('餐廳名稱', restaurants[i].name)
+      console.log('餐廳名稱', title)
       console.log('圖片', imageurl)
+      console.log('分數', score)
+      console.log('總分', totalStar)
+      console.log('地址', address)
+      console.log('開放時間', openTime)
+
+      fs.writeFileSync('./dump/near.json', JSON.stringify(template, null, 2))
     }
 
-    fs.writeFileSync('./dump/near2.json', JSON.stringify(template, null, 2))
     const result = await event.reply({
       type: 'flex',
-      altText: '查詢結果',
+      altText: '美食餐廳',
       contents: {
         type: 'carousel',
         contents: replies
