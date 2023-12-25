@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
+import { distance } from '../utils/distance.js'
 import fs from 'node:fs'
 import template2 from '../templates/near.js'
 
@@ -19,6 +20,7 @@ export default async (event, input) => {
     const imgUrl = []
     const indexes = []
     const restaurants = json.props.initialState.search.explore.data
+
     for (let i = 0; i < restaurants.length; i++) {
       if (restaurants[i].categories.includes(input) && restaurants[i].primaryCheckin.photos.length !== 0) {
         name.push(restaurants[i].name)

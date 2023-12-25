@@ -34,9 +34,10 @@ export default async (event) => {
       })
       .slice(0, 5)
 
-      restaurants.map((restaurant) => {
-        if(restaurant.categories.includes())
-      })
+    // restaurants.map((restaurant) => {
+    //   if (restaurant.categories.includes(input)) {
+    //   }
+    // })
 
     for (let i = 0; i < 5; i++) {
       // 餐廳名稱
