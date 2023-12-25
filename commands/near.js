@@ -5,16 +5,6 @@ import nearTemplates from '../templates/near.js'
 import fs from 'node:fs'
 
 export default async (event) => {
-  // event.message.address = 108台北市信義區
-  // match = [
-  //   '台北市信義區',
-  //   '台北市',
-  //   '信義區',
-  //   '區',
-  //   index: 3,
-  //   input: '108台北市信義區',
-  //   groups: [Object: null prototype] { city: '台北市', district: '信義區' }
-  // ]
   try {
     const match = event.message.address.match(/(?<city>\D+[縣市])(?<district>\D+?(市區|鎮區|鎮市|[鄉鎮市區]))/)
 
@@ -44,17 +34,27 @@ export default async (event) => {
       })
       .slice(0, 5)
 
+      restaurants.map((restaurant) => {
+        if(restaurant.categories.includes())
+      })
+
     for (let i = 0; i < 5; i++) {
       // 餐廳名稱
       const title = restaurants[i].name
-
+      let image = restaurants[i].primaryCheckin.photos[0]
       // 圖片
-      const image = restaurants[i].primaryCheckin.photos[0]
+      if (image !== undefined) {
+        image = restaurants[i].primaryCheckin.photos[0]
+      } else {
+        image = 'https://www.twfood.cc/img/code/IW472/_.jpg'
+      }
       const imageurl = new URL(image, 'https://lh3.googleusercontent.com/').href
       const score = restaurants[i].rating.toString()
       const totalStar = Math.round(parseFloat(score))
       const address = restaurants[i].address.toString()
       const openTime = restaurants[i].openingHours.toString()
+      // const phone = restaurants[i].phone
+      const phone = 'tel:' + restaurants[i].phone
       // 產生新模板
       const template = nearTemplates()
       // 修改模板標題
@@ -70,9 +70,11 @@ export default async (event) => {
         template.body.contents[1].contents[j].url =
           'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png'
       }
+
       template.body.contents[1].contents[5].text = score
       template.body.contents[2].contents[0].contents[1].text = address
       template.body.contents[2].contents[1].contents[1].text = openTime
+      template.footer.contents[0].action.uri = phone
       // 加入陣列中
       replies.push(template)
       console.log('餐廳名稱', title)

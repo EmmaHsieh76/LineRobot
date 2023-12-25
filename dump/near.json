@@ -2,7 +2,7 @@
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://lh3.googleusercontent.com/E3DLXw1lSOm7TedoiHgrjJckCcPiDsF9lQAjZIUU0PXuO6Pc5it3Xz96D7Omgt1W3CDsu_l1pM8Y8k1LREZkmRHR9Wz8ZPXNaruM4Jna9y8=s600",
+    "url": "https://lh3.googleusercontent.com/RLaysL829tpVxw2dASyhj9cwqTCkXz5zkofc765vJ-hiBdsY4ocNxX2jrEdD-xoMG67ZeyCRlwZ0rzhwcqh8zwLjZ8mcTpunDVNSBz_GY6A=s600",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -17,7 +17,7 @@
     "contents": [
       {
         "type": "text",
-        "text": "大碗公冰．甜品-新莊富國店",
+        "text": "老巷弄餐酒館 Alley Bar",
         "weight": "bold",
         "size": "xl"
       },
@@ -49,11 +49,11 @@
           {
             "type": "icon",
             "size": "sm",
-            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
           },
           {
             "type": "text",
-            "text": "4",
+            "text": "4.6",
             "size": "sm",
             "color": "#999999",
             "margin": "md",
@@ -81,7 +81,7 @@
               },
               {
                 "type": "text",
-                "text": "新北市新莊區富國路160號",
+                "text": "新北市泰山區新生路1號",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -103,7 +103,7 @@
               },
               {
                 "type": "text",
-                "text": "現正營業: 10:00-23:30",
+                "text": "今日營業: 17:00-01:00",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -127,17 +127,7 @@
         "action": {
           "type": "uri",
           "label": "CALL",
-          "uri": "https://linecorp.com"
-        }
-      },
-      {
-        "type": "button",
-        "style": "link",
-        "height": "sm",
-        "action": {
-          "type": "uri",
-          "label": "WEBSITE",
-          "uri": "https://linecorp.com"
+          "uri": "tel:0229000527"
         }
       },
       {

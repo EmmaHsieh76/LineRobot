@@ -128,17 +128,7 @@ export default () => {
           action: {
             type: 'uri',
             label: 'CALL',
-            uri: 'https://linecorp.com'
-          }
-        },
-        {
-          type: 'button',
-          style: 'link',
-          height: 'sm',
-          action: {
-            type: 'uri',
-            label: 'WEBSITE',
-            uri: 'https://linecorp.com'
+            uri: 'tel:'
           }
         },
         {
