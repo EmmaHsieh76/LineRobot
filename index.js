@@ -12,8 +12,12 @@ const bot = linebot({
 bot.on('message', (event) => {
   if (event.message.type === 'location') {
     near(event)
-  }
-  if (event.message.text === '小吃' || '下午茶' || '午餐') {
+  } else if (
+    event.message.text === '小吃' ||
+    event.message.text === '午餐' ||
+    event.message.text === '晚餐' ||
+    event.message.text === '早餐'
+  ) {
     const input = event.message.text
     category(event, input)
   }
