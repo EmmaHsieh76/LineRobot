@@ -128,7 +128,7 @@ export default () => {
           action: {
             type: 'uri',
             label: 'CALL',
-            uri: 'tel:'
+            uri: 'https://linecorp.com'
           }
         },
         {
