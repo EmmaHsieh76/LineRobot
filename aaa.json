@@ -113,7 +113,7 @@
       "app": {
         "_hasInit": false,
         "isDownloadBannerVisible": false,
-        "randomNum": 39,
+        "randomNum": 69,
         "mobileStatus": {
           "isMobile": false,
           "isIOS": false,
@@ -3866,11 +3866,11 @@
         },
         "adRestaurants": [],
         "categorySuggestions": [
-          "餐酒館",
+          "合菜",
+          "熱炒",
+          "火鍋",
           "啤酒",
-          "宵夜",
-          "居酒屋",
-          "燒烤"
+          "宵夜"
         ],
         "mapGLBound": {
           "sw": null,
