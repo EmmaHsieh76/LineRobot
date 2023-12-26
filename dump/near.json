@@ -2,7 +2,7 @@
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://lh3.googleusercontent.com/RLaysL829tpVxw2dASyhj9cwqTCkXz5zkofc765vJ-hiBdsY4ocNxX2jrEdD-xoMG67ZeyCRlwZ0rzhwcqh8zwLjZ8mcTpunDVNSBz_GY6A=s600",
+    "url": "https://lh3.googleusercontent.com/A0GrZ0ZASs_msXXs0VSPlcD_ybi2WMUOudOb4y6FlWut4b40ag6BL0UdGfuX84HEICyW_VZ7YFKK6yzoLEWYlg4dfiTzIbSLdF88FXwVtHgReg=s600",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -17,7 +17,7 @@
     "contents": [
       {
         "type": "text",
-        "text": "老巷弄餐酒館 Alley Bar",
+        "text": "悄悄好食 杭州南店",
         "weight": "bold",
         "size": "xl"
       },
@@ -49,11 +49,11 @@
           {
             "type": "icon",
             "size": "sm",
-            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
           },
           {
             "type": "text",
-            "text": "4.6",
+            "text": "4.3",
             "size": "sm",
             "color": "#999999",
             "margin": "md",
@@ -81,7 +81,7 @@
               },
               {
                 "type": "text",
-                "text": "新北市泰山區新生路1號",
+                "text": "臺北市中正區杭州南路一段11巷4號",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -103,7 +103,7 @@
               },
               {
                 "type": "text",
-                "text": "今日營業: 17:00-01:00",
+                "text": "今日營業: 08:30-18:30",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -127,7 +127,7 @@
         "action": {
           "type": "uri",
           "label": "CALL",
-          "uri": "tel:0229000527"
+          "uri": "tel:0223415218"
         }
       },
       {

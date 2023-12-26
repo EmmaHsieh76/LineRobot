@@ -1,16 +1,12 @@
-// import * as cheerio from 'cheerio'
 import json from '../aaa.json' assert { type: 'json' }
 import template2 from '../templates/near.js'
 import fs from 'node:fs'
+
 export default async (event, input) => {
   try {
-    // const $ = cheerio.load(data)
-    console.log(input, 'input')
-    console.log(event, 'event')
-
     const name = []
     const imgUrl = []
-    const indexes = []
+    // const indexes = []
     const restaurants = json.props.initialState.search.explore.data
     const templates = [] // 5個flex message
 
@@ -21,28 +17,43 @@ export default async (event, input) => {
       ) {
         name.push(restaurants[i].name)
         imgUrl.push(restaurants[i].primaryCheckin.photos[0])
-        indexes.push(i)
+        // indexes.push(i)
       }
     }
-    console.log(name)
-    console.log(indexes)
 
     for (let i = 0; i < 5; i++) {
-      // 建立新模板
-      const template = template2()
-      const img = imgUrl[i]
-      const title = name[i]
-      template.hero.url = img
-      template.body.contents[0].text = title
-      templates.push(template)
-      console.log(title)
-      console.log(img)
-      fs.writeFileSync('./dump/near2.json', JSON.stringify(template, null, 2))
-      // console.log(template)
-    }
-    console.log('result之前')
+      const template = template2() // 建立新模板
+      template.body.contents[0].text = name[i] //標題
 
-    const result = await event.reply({
+      template.hero.url = imgUrl[i] // 圖片
+
+      template.body.contents[1].contents[5].text = restaurants[i].rating.toString() //分數
+
+      template.body.contents[2].contents[0].contents[1].text = restaurants[i].address.toString() //地址
+
+      template.body.contents[2].contents[1].contents[1].text = restaurants[i].openingHours.toString() //營業時間
+
+      const phone = 'tel:' + restaurants[i].phone
+      template.footer.contents[0].action.uri = phone //電話
+
+      //星星
+      const score = restaurants[i].rating.toString()
+      const totalStar = Math.round(parseFloat(score))
+      for (let j = 0; j < totalStar; j++) {
+        template.body.contents[1].contents[j].url =
+          'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
+      }
+      for (let j = totalStar; j < 5; j++) {
+        template.body.contents[1].contents[j].url =
+          'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png'
+      }
+
+      templates.push(template)
+      fs.writeFileSync('./dump/near5.json', JSON.stringify(template, null, 2))
+    }
+    fs.writeFileSync('./dump/near6.json', JSON.stringify(templates, null, 2))
+
+    await event.reply({
       type: 'flex',
       altText: '搜尋結果',
       contents: {
@@ -50,10 +61,6 @@ export default async (event, input) => {
         contents: templates
       }
     })
-    console.log('result前')
-
-    console.log(result, 'result')
-    console.log('result後')
   } catch (error) {
     console.log(error)
   }
