@@ -13,7 +13,9 @@ export default async (event, input) => {
     for (let i = 0; i < restaurants.length; i++) {
       if (
         restaurants[i].categories.some((item) => item.includes(input)) &&
-        restaurants[i].primaryCheckin.photos.length !== 0
+        restaurants[i].primaryCheckin.photos.length !== 0 &&
+        restaurants[i].primaryCheckin.photos[0].length > 0 &&
+        restaurants[i].name.length > 0
       ) {
         name.push(restaurants[i].name)
         imgUrl.push(restaurants[i].primaryCheckin.photos[0])
@@ -21,7 +23,8 @@ export default async (event, input) => {
       }
     }
 
-    for (let i = 0; i < 5; i++) {
+    const len = name.length > 5 ? 5 : name.length
+    for (let i = 0; i < len; i++) {
       const template = template2() // 建立新模板
       template.body.contents[0].text = name[i] //標題
 
@@ -49,18 +52,23 @@ export default async (event, input) => {
       }
 
       templates.push(template)
-      fs.writeFileSync('./dump/near5.json', JSON.stringify(template, null, 2))
+      // fs.writeFileSync('./dump/near5.json', JSON.stringify(template, null, 2))
     }
-    fs.writeFileSync('./dump/near6.json', JSON.stringify(templates, null, 2))
 
-    await event.reply({
-      type: 'flex',
-      altText: '搜尋結果',
-      contents: {
-        type: 'carousel',
-        contents: templates
-      }
-    })
+    if (templates.length === 0) {
+      await event.reply('沒有結果')
+    } else {
+      const result = await event.reply({
+        type: 'flex',
+        altText: '搜尋結果',
+        contents: {
+          type: 'carousel',
+          contents: templates
+        }
+      })
+      console.log(result)
+      fs.writeFileSync('./dump/near6.json', JSON.stringify(templates, null, 2))
+    }
   } catch (error) {
     console.log(error)
   }
