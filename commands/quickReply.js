@@ -43,7 +43,7 @@ export default async (event) => {
             label: '小吃',
             text: '小吃'
           }
-        },
+        }
       ]
     }
   })
