@@ -67,7 +67,7 @@ export default async (event, input) => {
         }
       })
       console.log(result)
-      fs.writeFileSync('./dump/near6.json', JSON.stringify(templates, null, 2))
+      // fs.writeFileSync('./dump/near6.json', JSON.stringify(templates, null, 2))
     }
   } catch (error) {
     console.log(error)
