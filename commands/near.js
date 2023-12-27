@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
-// import { distance } from '../utils/distance.js'
+import { distance } from '../utils/distance.js'
 // import nearTemplates from '../templates/near.js'
 import fs from 'node:fs'
 
@@ -13,32 +13,29 @@ export default async (event) => {
     // const replies = []
     const json = JSON.parse($('#__NEXT_DATA__').text())
     // console.log('json', json)
-    fs.writeFileSync('./aaa.json', JSON.stringify(json, null, 2))
     // console.log(`https://ifoodie.tw/explore/${match[1]}/${match[2]}/list`)
-    // const restaurants = json.props.initialState.search.explore.data
-    //   .map((restaurant) => {
-    //     restaurant.distance = distance(
-    //       event.message.latitude,
-    //       event.message.longitude,
-    //       restaurant.lat,
-    //       restaurant.lng,
-    //       'K'
-    //     )
-    //     return restaurant
-    //   })
-    //   .filter((restaurant) => {
-    //     return restaurant.distance < 5
-    //   })
-    //   .sort((a, b) => {
-    //     return a.distance - b.distance
-    //   })
-    //   .slice(0, 5)
-
-    // restaurants.map((restaurant) => {
-    //   if (restaurant.categories.includes(input)) {
-    //   }
-    // })
-
+    const restaurants = json.props.initialState.search.explore.data
+    .map((restaurant) => {
+        restaurant.distance = distance(
+          event.message.latitude,
+          event.message.longitude,
+          restaurant.lat,
+          restaurant.lng,
+          'K'
+          )
+          return restaurant
+        })
+      .filter((restaurant) => {
+        return restaurant.distance < 2
+      })
+      .sort((a, b) => {
+        return a.distance - b.distance
+      })
+      .slice(0, 2)
+      
+      // console.log('json',restaurants)
+      fs.writeFileSync('./aaa.json', JSON.stringify(json, null, 2))
+      
     // for (let i = 0; i < 5; i++) {
     //   // 餐廳名稱
     //   const title = restaurants[i].name
