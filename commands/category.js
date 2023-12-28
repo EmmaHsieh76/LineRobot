@@ -55,7 +55,7 @@ export default async (event, input) => {
     }
 
     if (templates.length === 0) {
-      await event.reply('沒有結果')
+      await event.reply('附近沒有好吃的耶')
     } else {
       const result = await event.reply({
         type: 'flex',
