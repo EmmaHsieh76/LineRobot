@@ -1,10 +1,10 @@
-## 美食指南 LineRobot
+# 美食指南 LineRobot
 
-# 機器⼈的好友 ID :@075tsdic
+## 機器⼈的好友 ID :@075tsdic
 
-# 連接的公開資料來源: 愛食記 https://ifoodie.tw/
+## 連接的公開資料來源: 愛食記 https://ifoodie.tw/
 
-# 使⽤說明:
+## 使⽤說明:
 
 1. 點擊「+」
 2. 選擇位置資訊
