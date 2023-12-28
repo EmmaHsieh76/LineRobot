@@ -75,11 +75,11 @@ export default async (event) => {
         // fs.writeFileSync('./dump/near5.json', JSON.stringify(template, null, 2))
       }
 
-      if (templates.length >= 5) break
+      if (templates.length >= 12) break
     }
 
     if (templates.length === 0) {
-      await event.reply('沒有結果')
+      await event.reply('附近沒有好吃的耶')
     } else {
       const result = await event.reply({
         type: 'flex',
