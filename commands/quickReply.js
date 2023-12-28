@@ -16,6 +16,14 @@ export default async (event) => {
           type: 'action',
           action: {
             type: 'postback',
+            label: '早午餐',
+            data: `早午餐,${event.message.latitude},${event.message.longitude},${event.message.address}`
+          }
+        },
+        {
+          type: 'action',
+          action: {
+            type: 'postback',
             label: '午餐',
             data: `午餐,${event.message.latitude},${event.message.longitude},${event.message.address}`
           }
@@ -98,14 +106,6 @@ export default async (event) => {
             type: 'postback',
             label: '酒吧',
             data: `酒吧,${event.message.latitude},${event.message.longitude},${event.message.address}`
-          }
-        },
-        {
-          type: 'action',
-          action: {
-            type: 'postback',
-            label: '早午餐',
-            data: `早午餐,${event.message.latitude},${event.message.longitude},${event.message.address}`
           }
         }
       ]
