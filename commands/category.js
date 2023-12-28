@@ -1,4 +1,3 @@
-import json from '../aaa.json' assert { type: 'json' }
 import template2 from '../templates/near.js'
 import fs from 'node:fs'
 

@@ -31,5 +31,7 @@ export const distance = (lat1, lon1, lat2, lon2, unit) => {
       dist = dist * 0.8684
     }
     return dist
+    // return {dist, lat1, lon1}
+    
   }
 }

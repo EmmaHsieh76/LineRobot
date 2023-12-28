@@ -7,41 +7,41 @@ export default async (event) => {
         {
           type: 'action',
           action: {
-            type: 'message',
+            type: 'postback',
             label: '早餐',
-            text: '早餐'
+            data: `早餐,${event.message.latitude},${event.message.longitude},${event.message.address}`
           }
         },
         {
           type: 'action',
           action: {
-            type: 'message',
+            type: 'postback',
             label: '午餐',
-            text: '午餐'
+            data: `午餐,${event.message.latitude},${event.message.longitude},${event.message.address}`
           }
         },
         {
           type: 'action',
           action: {
-            type: 'message',
+            type: 'postback',
             label: '下午茶',
-            text: '下午茶'
+            data: `下午茶,${event.message.latitude},${event.message.longitude},${event.message.address}`
           }
         },
         {
           type: 'action',
           action: {
-            type: 'message',
+            type: 'postback',
             label: '晚餐',
-            text: '晚餐'
+            data: `晚餐,${event.message.latitude},${event.message.longitude},${event.message.address}`
           }
         },
         {
           type: 'action',
           action: {
-            type: 'message',
+            type: 'postback',
             label: '小吃',
-            text: '小吃'
+            data: `小吃,${event.message.latitude},${event.message.longitude},${event.message.address}`
           }
         }
       ]

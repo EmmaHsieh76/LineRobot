@@ -3,10 +3,17 @@ import * as cheerio from 'cheerio'
 import { distance } from '../utils/distance.js'
 // import nearTemplates from '../templates/near.js'
 import fs from 'node:fs'
+import template2 from '../templates/near.js'
 
 export default async (event) => {
   try {
-    const match = event.message.address.match(/(?<city>\D+[縣市])(?<district>\D+?(市區|鎮區|鎮市|[鄉鎮市區]))/)
+    const temp = event.postback.data.split(',')
+    const input = temp[0]
+    const latitude = temp[1]
+    const longitude = temp[2]
+    const address = temp[3]
+
+    const match = address.match(/(?<city>\D+[縣市])(?<district>\D+?(市區|鎮區|鎮市|[鄉鎮市區]))/)
 
     const { data } = await axios.get(`https://ifoodie.tw/explore/${match[1].replace('台灣', '')}/${match[2]}/list`)
     const $ = cheerio.load(data)
@@ -15,27 +22,80 @@ export default async (event) => {
     // console.log('json', json)
     // console.log(`https://ifoodie.tw/explore/${match[1]}/${match[2]}/list`)
     const restaurants = json.props.initialState.search.explore.data
-    .map((restaurant) => {
-        restaurant.distance = distance(
-          event.message.latitude,
-          event.message.longitude,
-          restaurant.lat,
-          restaurant.lng,
-          'K'
-          )
-          return restaurant
-        })
+      .map((restaurant) => {
+        restaurant.distance = distance(latitude, longitude, restaurant.lat, restaurant.lng, 'K')
+        return restaurant
+      })
       .filter((restaurant) => {
         return restaurant.distance < 2
       })
       .sort((a, b) => {
         return a.distance - b.distance
       })
-      .slice(0, 2)
-      
-      // console.log('json',restaurants)
-      fs.writeFileSync('./aaa.json', JSON.stringify(json, null, 2))
-      
+
+    // fs.writeFileSync('./restaurant.json', JSON.stringify(restaurants, null, 2))
+    const templates = [] // 5個flex message
+
+    for (let i = 0; i < restaurants.length; i++) {
+      if (
+        restaurants[i].categories.some((item) => item.includes(input)) &&
+        restaurants[i].primaryCheckin.photos.length !== 0 &&
+        restaurants[i].primaryCheckin.photos[0].length > 0 &&
+        restaurants[i].name.length > 0
+      ) {
+        // indexes.push(i)
+
+        const template = template2() // 建立新模板
+        template.body.contents[0].text = restaurants[i].name // 標題
+
+        template.hero.url = restaurants[i].primaryCheckin.photos[0] // 圖片
+
+        template.body.contents[1].contents[5].text = restaurants[i].rating.toString() // 分數
+
+        template.body.contents[2].contents[0].contents[1].text = restaurants[i].address.toString() // 地址
+
+        template.body.contents[2].contents[1].contents[1].text = restaurants[i].openingHours.toString() // 營業時間
+
+        const phone = 'tel:' + restaurants[i].phone
+        template.footer.contents[0].action.uri = phone // 電話
+
+        // 星星
+        const score = restaurants[i].rating.toString()
+        const totalStar = Math.round(parseFloat(score))
+        for (let j = 0; j < totalStar; j++) {
+          template.body.contents[1].contents[j].url =
+            'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png'
+        }
+        for (let j = totalStar; j < 5; j++) {
+          template.body.contents[1].contents[j].url =
+            'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png'
+        }
+
+        templates.push(template)
+        // fs.writeFileSync('./dump/near5.json', JSON.stringify(template, null, 2))
+      }
+
+      if (templates.length >= 5) break
+    }
+
+    if (templates.length === 0) {
+      await event.reply('沒有結果')
+    } else {
+      const result = await event.reply({
+        type: 'flex',
+        altText: '搜尋結果',
+        contents: {
+          type: 'carousel',
+          contents: templates
+        }
+      })
+      console.log(result)
+      // fs.writeFileSync('./dump/near6.json', JSON.stringify(templates, null, 2))
+    }
+
+    // console.log('json',restaurants)
+    // fs.writeFileSync('./aaa.json', JSON.stringify(json, null, 2))
+
     // for (let i = 0; i < 5; i++) {
     //   // 餐廳名稱
     //   const title = restaurants[i].name
