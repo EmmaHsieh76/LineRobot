@@ -27,7 +27,7 @@ export default async (event) => {
         return restaurant
       })
       .filter((restaurant) => {
-        return restaurant.distance < 2
+        return restaurant.distance < 3
       })
       .sort((a, b) => {
         return a.distance - b.distance
